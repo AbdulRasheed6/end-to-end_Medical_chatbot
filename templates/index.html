@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedicBot - AI Medical Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="outerbg">
+    <div class="chatboxout">
+        <h2 class="header">MedicBot - AI Medical Assistant</h2>
+        <div class="chatboxin" id="chatbox">
+            <!-- Messages appear here -->
+        </div>
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Ask a medical question..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $("#chat-form").on("submit", function(e) {
+        e.preventDefault();
+        const msg = $("#user-input").val().trim();
+        if (!msg) return;
+
+        // Show user's message
+        $("#chatbox").append(`
+            <div class="chat-container">
+                <div class="chat-sender msg">
+                    <strong>You</strong>
+                    <div class="chatmsg">${msg}</div>
+                </div>
+            </div>
+        `);
+
+        // Send to backend
+        $.ajax({
+            type: "POST",
+            url: "/get",
+            data: { msg: msg },
+            success: function(response) {
+                // Show MedicBot's response
+                $("#chatbox").append(`
+                    <div class="chat-container">
+                        <div class="chat-respond msg">
+                            <strong>MedicBot</strong>
+                            <div class="chatmsg">${response}</div>
+                        </div>
+                    </div>
+                `);
+                $("#chatbox").scrollTop($("#chatbox")[0].scrollHeight);
+            }
+        });
+
+        $("#user-input").val("");
+    });
+</script>
+</body>
+</html>

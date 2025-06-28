@@ -1,12 +1,15 @@
-sentence-transformers==2.2.2
+sentence-transformers
 langchain
 flask
 pypdf
+notebook
 python-dotenv
 pinecone[grpc]
 langchain-pinecone
 langchain_community
-langchain_openai
+langchain-google-genai
+google-generativeai
 langchain_experimental
+pyreadline
 
 -e .
