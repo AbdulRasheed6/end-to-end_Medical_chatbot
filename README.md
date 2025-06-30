@@ -27,3 +27,37 @@ conda activate medicapp
 pip install -r requirements.txt
 
 ```
+
+### Create a .env file in the root directory add add your Pinecone and Gemini ai credentials as follows:
+
+```
+PINECONE_API_KEY= "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+GEMINI_API_KEY= "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+
+```bash
+# run the following command to store embedings to pinecone
+python store_index.py
+```
+
+
+```bash
+# Finally run the following command
+python app.py
+```
+
+```bash
+open up localhost:
+```
+
+
+
+### Techstack Used:
+
+
+- Python
+- LangChain
+- Flask
+- Gemini
+- Pinecone
