@@ -30,6 +30,7 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env: 
+          DOCKER_BUILDKIT: 0
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.ECR_REPO }} 
           IMAGE_TAG: latest
